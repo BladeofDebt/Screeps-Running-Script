@@ -24,6 +24,7 @@ var roleHarvester =
                             structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
                 }
             });
+
             // Checks if there is a structure to store the resources in
             if (targets.length > 0)
             {
@@ -33,6 +34,10 @@ var roleHarvester =
                     // Attempts to move to the structure if it cannot place in the structure
                     creep.moveTo(targets[0]);
                 }
+            }
+            else
+            {
+                creep.moveTo(12, 25);
             }
         }
     }
