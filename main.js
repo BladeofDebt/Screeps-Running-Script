@@ -23,28 +23,28 @@ function Spawning()
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
 
-    if (harvesters.length < controllerLevel * controllerLevel)
+    if (harvesters.length < 4)
     {
-        Game.spawns.Main.createCreep([WORK, CARRY, MOVE], undefined, { role: 'harvester' });
+        Game.spawns.Main.createCreep([WORK, WORK, CARRY, CARRY, MOVE], undefined, { role: 'harvester' });
     }
 
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
 
-    if (builders.length < harvesters.length * 0.75)
+    if (builders.length < 3)
     {
         Game.spawns.Main.createCreep([WORK, WORK, CARRY, MOVE], undefined, { role: 'builder' });
     }
 
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
-    if (upgraders.length < harvesters.length / 4)
+    if (upgraders.length < 2)
     {
         Game.spawns.Main.createCreep([WORK, CARRY, MOVE], undefined, { role: 'upgrader' });
     }
 
     var guards = _.filter(Game.creeps, (creep) => creep.memory.role == 'guard');
 
-    if (guards.length < controllerLevel * 1.5)
+    if (guards.length < 6)
     {
         Game.spawns.Main.createCreep([MOVE, MOVE, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH], undefined, { role: 'guard' });
     }

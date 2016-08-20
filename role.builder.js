@@ -17,32 +17,17 @@ var roleBuilder =
         // Checks if the creep is tasked to build
         if (creep.memory.building)
         {
-            var damagedTargets = creep.room.find(FIND_STRUCTURES,
-            {
-                filter: (structure) => structure.hits < structure.hitsMax
-            });
+            // If it is tasked to build finds a construction site
+            var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 
-            if (damagedTargets.length)
+            // Checks if the size of the construction site list is greater then 0
+            if (targets.length)
             {
-                if (creep.repair(damagedTargets[0]) == ERR_NOT_IN_RANGE)
+                // Attempts to build on the construction site
+                if (creep.build(targets[0]) == ERR_NOT_IN_RANGE)
                 {
-                    creep.moveTo(damagedTargets[0]);
-                }
-            }
-            else
-            {
-                // If it is tasked to build finds a construction site
-                var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-
-                // Checks if the size of the construction site list is greater then 0
-                if (targets.length)
-                {
-                    // Attempts to build on the construction site
-                    if (creep.build(targets[0]) == ERR_NOT_IN_RANGE)
-                    {
-                        // If the construction site is out of range it move to the construction site
-                        creep.moveTo(targets[0]);
-                    }
+                    // If the construction site is out of range it move to the construction site
+                    creep.moveTo(targets[0]);
                 }
             }
         }
